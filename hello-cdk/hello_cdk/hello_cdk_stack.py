@@ -112,7 +112,7 @@ class HelloCdkStack(Stack):
             "HelloCdkQueue",
             visibility_timeout=Duration.seconds(300),
         )
-        # Optional: create alarms as you create other resources
+        # Optional: create alarms as you create resources
         urgent_alert_topic = sns.Topic(self, "UrgentAlerts")
 
         alarm = cloudwatch.Alarm(
