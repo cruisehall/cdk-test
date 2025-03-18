@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1d29fdc7edd95edc2c6356d7953a055b766b73b7f37230141fc44f8cecc45bdf.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c557f4f641313cc46bd4804c884f80beb3e6cb15ac51a0df1eddbf35b6aa9497.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -38,6 +38,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "HelloCdkQueueB56C77B9"
+          }
+        ],
+        "/HelloCdkStack/UrgentAlerts/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UrgentAlertsE7290D3B"
           }
         ],
         "/HelloCdkStack/QueueLengthAlarm/Resource": [

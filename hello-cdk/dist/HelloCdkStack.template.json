@@ -11,9 +11,21 @@
     "aws:cdk:path": "HelloCdkStack/HelloCdkQueue/Resource"
    }
   },
+  "UrgentAlertsE7290D3B": {
+   "Type": "AWS::SNS::Topic",
+   "Metadata": {
+    "aws:cdk:path": "HelloCdkStack/UrgentAlerts/Resource"
+   }
+  },
   "QueueLengthAlarm24413B72": {
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "UrgentAlertsE7290D3B"
+     }
+    ],
+    "AlarmName": "Old messages are sitting on the HelloCdkQueue",
     "ComparisonOperator": "GreaterThanOrEqualToThreshold",
     "DatapointsToAlarm": 5,
     "Dimensions": [
@@ -30,6 +42,11 @@
     "EvaluationPeriods": 5,
     "MetricName": "ApproximateAgeOfOldestMessage",
     "Namespace": "AWS/SQS",
+    "OKActions": [
+     {
+      "Ref": "UrgentAlertsE7290D3B"
+     }
+    ],
     "Period": 60,
     "Statistic": "Average",
     "Threshold": 10,
@@ -42,7 +59,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/yXLQQ7CIBCF4bN0D6O0i65NL6D1AAYB07EUUgZCDOHuTXH1vuTl70GMI1w7mYkrvXKLbyjPKNXKZKZXoZ2gPJJJhk0f11CZsj7pLKNaoNysDNv5NdR6cjbkU1AtmbzTGNG7yu6/uHh3GUD0ILovIfKQXMTNwPzfAzbkksyOAAAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/yXMQQ7CIBQE0LN0T79SF12bXkCre4OA6bcUKh9CDOHuBlzNy0wyA/BxhGMnEvVSrb3BJ+RbEHJlItEj04cgX6OOmk0v21AYWYJ8dzvKWjYUJo2LKokgF8hnI/xWt4ZSKmdNLnrZfiZnFQZ0trDLNyzOHk7AB+DdmxB7H23ATcP8zx8HHyfyowAAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "HelloCdkStack/CDKMetadata/Default"

@@ -32,6 +32,28 @@
               "version": "2.177.0"
             }
           },
+          "UrgentAlerts": {
+            "id": "UrgentAlerts",
+            "path": "HelloCdkStack/UrgentAlerts",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "HelloCdkStack/UrgentAlerts/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.177.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.177.0"
+            }
+          },
           "QueueLengthAlarm": {
             "id": "QueueLengthAlarm",
             "path": "HelloCdkStack/QueueLengthAlarm",
@@ -42,6 +64,12 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
                   "aws:cdk:cloudformation:props": {
+                    "alarmActions": [
+                      {
+                        "Ref": "UrgentAlertsE7290D3B"
+                      }
+                    ],
+                    "alarmName": "Old messages are sitting on the HelloCdkQueue",
                     "comparisonOperator": "GreaterThanOrEqualToThreshold",
                     "datapointsToAlarm": 5,
                     "dimensions": [
@@ -58,6 +86,11 @@
                     "evaluationPeriods": 5,
                     "metricName": "ApproximateAgeOfOldestMessage",
                     "namespace": "AWS/SQS",
+                    "okActions": [
+                      {
+                        "Ref": "UrgentAlertsE7290D3B"
+                      }
+                    ],
                     "period": 60,
                     "statistic": "Average",
                     "threshold": 10,
